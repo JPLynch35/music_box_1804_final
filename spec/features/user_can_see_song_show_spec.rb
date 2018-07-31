@@ -24,4 +24,19 @@ describe 'user sees one song' do
 
     expect(page).to have_content("Rating: #{song_1.rating}")
   end
+  it 'with the genres listed for the song' do
+    artist = Artist.create(name: 'Journey')
+    song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808)
+    genre1 = song_1.genres.create(name: 'rock')
+    genre2 = song_1.genres.create(name: 'hard rock')
+    genre3 = Genre.create(name: 'rap')
+
+    visit song_path(song_1)
+
+    expect(page).to have_content(song_1.title)
+    expect(page).to have_content("Genres for this Song:")
+    expect(page).to have_content(genre1.name)
+    expect(page).to have_content(genre2.name)
+    expect(page).to_not have_content(genre3.name)
+  end
 end
