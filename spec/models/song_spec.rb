@@ -8,6 +8,8 @@ describe Song, type: :model do
   end
 
   describe 'relationships' do
-    it{should belong_to(:artist)}
+    it { should belong_to(:artist)}
+    it { should have_many(:song_genres)}
+    it { should have_many(:genres).through(:song_genres) }
   end
 end
