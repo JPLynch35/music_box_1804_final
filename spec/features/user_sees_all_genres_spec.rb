@@ -20,10 +20,12 @@ describe 'a user' do
       expect(page).to_not have_content('Name')
       expect(page).to_not have_button('Create Genre')
     end
-    it 'do not have access to new genre path' do
-      visit admin_genres_path
-      
-      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    it 'can see the name of the genre as a link that directs to the genre show page' do
+      visit genres_path
+      click_on 'jazz'
+
+      expect(current_path).to eq(genre_path(@genre1))
+      expect(page).to have_content(@genre1.name)
     end
   end
 end

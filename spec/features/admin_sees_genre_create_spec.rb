@@ -44,5 +44,12 @@ describe 'an admin' do
       expect(page).to have_content(@genre3.name)
       expect(page).to_not have_content('Hiphop')
     end
+    it 'can see the name of the genre as a link that directs to the genre show page' do
+      visit genres_path
+      click_on 'jazz'
+
+      expect(current_path).to eq(genre_path(@genre1))
+      expect(page).to have_content(@genre1.name)
+    end
   end
 end

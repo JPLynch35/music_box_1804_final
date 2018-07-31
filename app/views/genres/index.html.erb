@@ -10,5 +10,5 @@
 <% end %>
 
 <% @genres.each do |genre| %>
-  <p><%= genre.name %></p>
+  <p><%= link_to genre.name, genre_path(genre) %></p>
 <% end %>

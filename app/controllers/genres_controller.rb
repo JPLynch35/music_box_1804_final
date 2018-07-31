@@ -3,4 +3,8 @@ class GenresController < ApplicationController
     @genre = Genre.new
     @genres = Genre.order(:name)
   end
+
+  def show
+    @genre = Genre.find(params[:id])
+  end
 end
