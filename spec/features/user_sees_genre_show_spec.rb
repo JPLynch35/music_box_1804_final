@@ -22,7 +22,7 @@ describe 'as a visitor' do
     it 'should see the average rating for all songs in genre' do
       visit genre_path(@genre1)
 
-      expected = (@song1.rating + @song2.rating) / 2
+      expected = (@song_1.rating + @song_2.rating) / 2
 
       expect(page).to have_content("Average Rating for Songs in this Genre: #{expected}")
     end
