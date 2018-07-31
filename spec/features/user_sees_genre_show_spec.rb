@@ -4,9 +4,9 @@ describe 'as a visitor' do
   describe 'visiting a genre show page' do
     before :each do
       artist = Artist.create(name: 'Journey')
-      @song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808)
-      @song_2 = artist.songs.create(title: "Anyway You Want It", length: 420, play_count: 67908)
-      @song_3 = artist.songs.create(title: "This", length: 410, play_count: 678)
+      @song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808, rating: 3)
+      @song_2 = artist.songs.create(title: "Anyway You Want It", length: 420, play_count: 67908, rating: 5)
+      @song_3 = artist.songs.create(title: "This", length: 410, play_count: 678, rating: 1)
       @genre1 = @song_1.genres.create(name: 'rock')
       SongGenre.create(song_id: @song_2.id, genre_id: @genre1.id)
       @genre2 = @song_2.genres.create(name: 'jazz')
@@ -18,6 +18,13 @@ describe 'as a visitor' do
       expect(page).to have_content(@song_1.title)
       expect(page).to have_content(@song_2.title)
       expect(page).to_not have_content(@song_3.title)
+    end
+    it 'should see the average rating for all songs in genre' do
+      visit genre_path(@genre1)
+
+      expected = (@song1.rating + @song2.rating) / 2
+
+      expect(page).to have_content("Average Rating for Songs in this Genre: #{expected}")
     end
   end
 end
