@@ -6,3 +6,7 @@
   <p><%= song.title %></p>
 <% end %>
 
+
+<h3>Highest Rated Song in this Genre: <%= @genre.song_rating.first.title %> (<%= @genre.song_rating.first.rating %>)</h3>
+
+<h3>Lowest Rated Song in this Genre: <%= @genre.song_rating.last.title %> (<%= @genre.song_rating.last.rating %>)</h3>

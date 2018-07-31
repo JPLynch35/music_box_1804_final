@@ -26,5 +26,15 @@ describe 'as a visitor' do
 
       expect(page).to have_content("Average Rating for Songs in this Genre: #{expected}")
     end
+    it 'should see the highest rating from all songs in genre' do
+      visit genre_path(@genre1)
+
+      expect(page).to have_content("Highest Rated Song in this Genre: #{@song_2.title} (#{@song_2.rating})")
+    end
+    it 'should see the lowest rating from all songs in genre' do
+      visit genre_path(@genre1)
+
+      expect(page).to have_content("Lowest Rated Song in this Genre: #{@song_1.title} (#{@song_1.rating})")
+    end
   end
 end

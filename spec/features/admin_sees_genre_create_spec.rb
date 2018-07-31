@@ -45,6 +45,9 @@ describe 'an admin' do
       expect(page).to_not have_content('Hiphop')
     end
     it 'can see the name of the genre as a link that directs to the genre show page' do
+      artist = Artist.create(name:'Adele')
+      song_1 = artist.songs.create(title: "Don't Stop Believin", length: 303, play_count: 123456)
+      SongGenre.create(song_id: song_1.id, genre_id: @genre1.id)
       visit genres_path
       click_on 'jazz'
 
