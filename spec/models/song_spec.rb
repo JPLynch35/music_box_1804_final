@@ -11,6 +11,13 @@ describe Song, type: :model do
 
       expect(song.rating).to eq(0)
     end
+    it 'should not create a song with a rating over 5' do
+      artist = Artist.create(name: 'Bill')
+      song1 = artist.songs.create(title: 'hi', length: 234, play_count: 23)
+      song2 = artist.songs.create(title: 'yo', length: 234, play_count: 23, rating: 8)
+
+      expect(Song.last.title).to eq('hi')
+    end
   end
 
   describe 'relationships' do
