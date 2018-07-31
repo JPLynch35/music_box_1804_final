@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :carts, only: [:create]
+
+  resources :genres, only: [:index]
+
 end
