@@ -22,5 +22,27 @@ describe 'an admin' do
       expect(page).to have_content('Name')
       expect(page).to have_button('Create Genre')
     end
+    it 'can successfully create a genre and when added, will see it on the genre index page' do
+      visit genres_path
+
+      fill_in :Name, with: 'Hiphop'
+      click_button 'Create Genre'
+
+      expect(current_path).to eq(genres_path)
+      expect(page).to have_content(@genre1.name)
+      expect(page).to have_content(@genre2.name)
+      expect(page).to have_content(@genre3.name)
+      expect(page).to have_content('Hiphop')
+    end
+    it 'cant successfully create a genre without a name' do
+      visit genres_path
+
+      click_button 'Create Genre'
+
+      expect(page).to have_content(@genre1.name)
+      expect(page).to have_content(@genre2.name)
+      expect(page).to have_content(@genre3.name)
+      expect(page).to_not have_content('Hiphop')
+    end
   end
 end

@@ -23,6 +23,6 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:create]
 
-  resources :genres, only: [:index]
+  resources :genres, only: [:index, :create]
 
 end
