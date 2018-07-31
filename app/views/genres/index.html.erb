@@ -1,5 +1,14 @@
 <h1>All Genres</h1>
 
+<% if current_admin? %>
+  <%= form_for @genre do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
 <% @genres.each do |genre| %>
   <p><%= genre.name %></p>
 <% end %>
