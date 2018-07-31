@@ -1,6 +1,8 @@
 <h1><%= @genre.name %></h1>
+<h3>Average Rating for Songs in this Genre: <%= @genre.average_rating %></h3>
 
 <h3>Songs:</h3>
 <% @genre.songs.each do |song| %>
   <p><%= song.title %></p>
 <% end %>
+
