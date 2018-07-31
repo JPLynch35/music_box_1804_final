@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'a user' do
+describe 'a visitor' do
   describe 'visiting the genre index page' do
     before :each do
       @genre1 = Genre.create(name: 'jazz')

@@ -5,6 +5,6 @@ class GenresController < ApplicationController
   end
 
   def show
-    @genre = Genre.find(params[:id])
+    @genre = Genre.includes(:songs).find(params[:id])
   end
 end
